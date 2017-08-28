@@ -21,11 +21,23 @@ import javax.persistence.Id;
 @Table(name="marcador")
 public class Marcador {
     @Id@GeneratedValue(strategy =GenerationType.IDENTITY )
+    
     @Column(name = "idmarcador")
     private int marcador_id;
     
-    //Aqui va tu codigo
+    @Column(name = "nombreM")
+    private String varNombreM;
+   
+    @Column(name = "latitud")
+    private double varLatitud;
     
+    @Column(name = "longitud")
+    private double varLongitud;
+    
+    @Column(name = "descripcion")
+    private String varDescripcion;
+    
+  
     /**Nos da el id del marcador
      * @return el id del marcador 
     */
@@ -42,4 +54,36 @@ public class Marcador {
     
     
     //Aqui va tu codigo
+
+    public String getVarNombreM() {
+        return varNombreM;
+    }
+
+    public void setVarNombreM(String varNombreM) {
+        this.varNombreM = varNombreM;
+    }
+
+    public double getVarLatitud() {
+        return varLatitud;
+    }
+
+    public void setVarLatitud(double varLatitud) {
+        this.varLatitud = varLatitud;
+    }
+
+    public double getVarLongitud() {
+        return varLongitud;
+    }
+
+    public void setVarLongitud(double varLongitud) {
+        this.varLongitud = varLongitud;
+    }
+
+    public String getVarDescripcion() {
+        return varDescripcion;
+    }
+
+    public void setVarDescripcion(String varDescripcion) {
+        this.varDescripcion = varDescripcion;
+    }
 }
