@@ -61,7 +61,7 @@ public class Controlador {
     public String guardaMarcador(HttpServletRequest request){
         Double latitud = Double.parseDouble(request.getParameter("latitud"));
         Double longitud = Double.parseDouble(request.getParameter("longitud"));
-        String nombre = request.getParameter("nombreM");
+        String nombre = request.getParameter("nombre");
         String descripcion = request.getParameter("descripcion");
         Marcador ma = marcador_db.getMarcador(latitud, longitud);
         if(ma==null){
