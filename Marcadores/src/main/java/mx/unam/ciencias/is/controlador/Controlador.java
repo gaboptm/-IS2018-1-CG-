@@ -61,15 +61,15 @@ public class Controlador {
     public String guardaMarcador(HttpServletRequest request){
         Double latitud = Double.parseDouble(request.getParameter("latitud"));
         Double longitud = Double.parseDouble(request.getParameter("longitud"));
-        String nombre = request.getParameter("nombre");
+        String nombre = request.getParameter("nombreM");
         String descripcion = request.getParameter("descripcion");
         Marcador ma = marcador_db.getMarcador(latitud, longitud);
         if(ma==null){
             Marcador m  = new Marcador();
-            m.setLatitud(latitud);
-            m.setLongitud(longitud);
-            m.setNombre(nombre);
-            m.setDescripcion(descripcion);
+            m.setVarLatitud(latitud);
+            m.setVarLongitud(longitud);
+            m.setVarNombreM(nombre);
+            m.setVarDescripcion(descripcion);
             marcador_db.guardar(m);
         
         }
@@ -86,18 +86,43 @@ public class Controlador {
      */ 
     @RequestMapping(value="/actualizaM", method = RequestMethod.GET)
     public ModelAndView actualizaM(ModelMap model,HttpServletRequest request){
-        //Aqui va tu codigo
+        Double latitud = Double.parseDouble(request.getParameter("latitud"));
+        Double longitud = Double.parseDouble(request.getParameter("longitud"));
+         Marcador m = marcador_db.getMarcador(latitud,longitud);
+         model.addAttribute("marcador",m);
+         return new ModelAndView("actualizaM",model);
     
     }
     
     
     @RequestMapping(value="/eliminaMarcador", method = RequestMethod.GET)
     public String eliminaMarcador(HttpServletRequest request){
-        //Aqui va tu codigo
+         Double latitud = Double.parseDouble(request.getParameter("latitud"));
+        Double longitud = Double.parseDouble(request.getParameter("longitud"));
+        Marcador m = marcador_db.getMarcador(latitud, longitud);
+        if(m!=null){
+            marcador_db.eliminar(m);
+        }
+        return "redirect:/";
     }
     
     @RequestMapping(value= "/actualizar", method = RequestMethod.POST)
     public String actualizar(HttpServletRequest request){
-        //Aqui va tu codigo   
+       int id=Integer.parseInt(request.getParameter("id"));
+        Double latitud = Double.parseDouble(request.getParameter("latitud"));
+        Double longitud = Double.parseDouble(request.getParameter("longitud"));
+        String nombre = request.getParameter("nombreM");
+        String descripcion = request.getParameter("descripcion");
+        Marcador ma = marcador_db.getMarcadorId(id);
+        if(ma!=null){
+          if(!descripcion.equals(""))
+              ma.setVarDescripcion(descripcion);
+              if(!nombre.equals(""))
+                  ma.setVarNombreM(nombre);
+              marcador_db.actualizar(ma);
+        
+        }
+        return "redirect:/";
+ 
     }
 }
