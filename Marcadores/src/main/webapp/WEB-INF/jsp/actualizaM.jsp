@@ -28,11 +28,11 @@
             <aside>
                 
                 <form action="/Marcadores/actualizar" method="POST">
-                    <input id="id" name="id" hidden="true" value="${marcador.marcadorid}"><br>
-                    <input id="nombre" name="nombre"   placeholder="${marcador.nombre}"><br>
-                    <input id="latitud" name="latitud" readonly="readonly" placeholder="${marcador.latitud}"><br>
-                    <input id="longitud" name="longitud" readonly="readonly" placeholder="${marcador.longitud}"><br>
-                    <input id="desc" name="desc"  placeholder="${marcador.descripcion}"><br>
+                    <input id="id" name="id" hidden="true" value="${marcador.marcador_id}"><br>
+                    <input id="nombre" name="nombre"   placeholder="${marcador.varNombreM}"><br>
+                    <input id="latitud" name="latitud" readonly="readonly" placeholder="${marcador.varLatitud}"><br>
+                    <input id="longitud" name="longitud" readonly="readonly" placeholder="${marcador.varLongitud}"><br>
+                    <input id="desc" name="desc"  placeholder="${marcador.varDescripcion}"><br>
                     <button type="submit" class="btn btn-primary btn-lg active">Actualizame</button>
                 </form>
             </aside>
@@ -67,7 +67,7 @@
             var geocoder;
             function initialize() {
               geocoder = new google.maps.Geocoder();
-              latLng = new google.maps.LatLng(${marcador.latitud},${marcador.longitud});
+              latLng = new google.maps.LatLng(${marcador.varLatitud},${marcador.varLongitud});
               map = new google.maps.Map(document.getElementById('mapa'), {
                 zoom: 3,
                 center: latLng,
@@ -75,7 +75,7 @@
               });
               marker = new google.maps.Marker({
                 position: latLng,
-                title: '${marcador.latitud},${marcador.longitud}',
+                title: '${marcador.varLatitud},${marcador.varLongitud}',
                 map: map,
                 draggable: true
               });
