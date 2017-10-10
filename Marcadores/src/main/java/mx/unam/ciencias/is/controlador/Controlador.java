@@ -38,7 +38,7 @@ public class Controlador {
           
         model.addAttribute("marcadores", mar);
         
-        return new ModelAndView("inicio",model);
+        return new ModelAndView("login",model);
     
     }
     
